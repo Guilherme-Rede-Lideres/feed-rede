@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad - Encontro de Líderes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header */
+        .header {
+  position: relative;
+  height: 25vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #eaeaea;
+}
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+.quote-text, .quote-author {
+    transition: opacity 0.5s ease-in-out;
+}
+
+      /* Participants */
+        .participants-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px 60px;
+        }
+
+        .participant {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .participant-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .participant-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f0f0f0;
+            flex-shrink: 0;
+        }
+
+        .participant-info {
+            flex: 1;
+        }
+
+        .participant-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .participant-area {
+            font-size: 0.9rem;
+            color: #414042;
+            font-weight: 400;
+        }
+
+        .participant-linkedin {
+            align-self: flex-start;
+        }
+
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #414042;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .linkedin-link:hover {
+            color: #00FFFF;
+        }
+
+        .linkedin-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        /* Calendar Simple */
+        .calendar-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .next-meetings {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .next-meetings:last-child {
+            border-bottom: none;
+        }
+
+        .meeting-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .meeting-date .date {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #00FFFF;
+            line-height: 1;
+        }
+
+        .meeting-date .month {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #414042;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meeting-info {
+            flex: 1;
+        }
+
+        .meeting-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .meeting-time {
+            font-size: 0.9rem;
+            color: #414042;
+        }
+
+        /* Impact Quote */
+        .quote-container {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000000;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            font-style: italic;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: #414042;
+            font-weight: 400;
+        }
+
+        /* Features */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+        }
+
+        .feature {
+            text-align: left;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #414042;
+            line-height: 1.6;
+        }
+
+        /* Feedback Section */
+        .feedback-section {
+            text-align: center;
+            padding: 100px 0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .feedback-btn {
+            background: #00FFFF;
+            border: none;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 16px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: none;
+        }
+
+        .feedback-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 4px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00FFFF;
+        }
+
+        .stars {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #f0f0f0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star.active {
+            color: #00FFFF;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid #f0f0f0;
+            color: #414042;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #414042;
+        }
+
+        .btn-primary {
+            background: #00FFFF;
+            border: none;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .participants-list {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 30px;
+            }
+            
+            .calendar-simple {
+                gap: 15px;
+            }
+            
+            .next-meetings {
+                padding: 15px 0;
+            }
+            
+            .meeting-date {
+                min-width: 50px;
+            }
+            
+            .meeting-date .date {
+                font-size: 1.5rem;
+            }
+            
+            .features-list {
+                gap: 40px;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+  <header class="header">
+  <video autoplay muted loop playsinline class="background-video">
+    <source src="assets/bolhas1.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeo.
+  </video>
+
+  <div class="overlay-content">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+  </div>
+</header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Participants Section -->
+             <!-- Participants Section -->
+            <section class="section">
+                <h2 class="section-title">Participantes</h2>
+                <div class="participants-list">
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b547?w=100&h=100&fit=crop&crop=face" alt="Ana Maria Silva" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Ana Maria Silva</div>
+                                <div class="participant-area">Marketing Digital</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/anamariasilva" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Roberto Costa" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Roberto Costa</div>
+                                <div class="participant-area">Vendas</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/robertocosta" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Marina Ferreira" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Marina Ferreira</div>
+                                <div class="participant-area">Recursos Humanos</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/marinaferreira" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="João Santos" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">João Santos</div>
+                                <div class="participant-area">Tecnologia</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/joaosantos" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face" alt="Larissa Pereira" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Larissa Pereira</div>
+                                <div class="participant-area">Operações</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/larissapereira" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face" alt="Carlos Freitas" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Carlos Freitas</div>
+                                <div class="participant-area">Financeiro</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/carlosfreitas" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face" alt="Beatriz Lima" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Beatriz Lima</div>
+                                <div class="participant-area">Projetos</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/beatrizlima" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="participant">
+                        <div class="participant-header">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Thiago Rocha" class="participant-photo">
+                            <div class="participant-info">
+                                <div class="participant-name">Thiago Rocha</div>
+                                <div class="participant-area">Inovação</div>
+                            </div>
+                        </div>
+                        <div class="participant-linkedin">
+                            <a href="https://linkedin.com/in/thiagorocha" target="_blank" class="linkedin-link">
+                                <svg class="linkedin-icon" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <!-- Impact Quote Section -->
+          <section class="section">
+    <h2 class="section-title">Frase de Impacto dos Líderes Presentes</h2>
+    <div class="quote-container">
+        <div class="quote-text" id="quoteText">
+            <!-- Frase será inserida aqui via JavaScript -->
+        </div>
+        <div class="quote-author" id="quoteAuthor">
+            <!-- Autor será inserido aqui via JavaScript -->
+        </div>
+    </div>
+</section>
+
+        </div>
+
+        <!-- Feedback Section -->
+        <section class="feedback-section">
+            <div class="container">
+                <button class="feedback-btn" onclick="openFeedback()">
+                    Deixar Feedback
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Calendar functionality
+        let currentMonth = 0;
+        let currentYear = 2025;
+
+        const months = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
+
+        const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        const squadMeetings = [3, 10, 17, 24, 31];
+
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const monthHeader = document.querySelector('.calendar-month');
+            
+            monthHeader.textContent = `${months[currentMonth]} ${currentYear}`;
+            calendar.innerHTML = '';
+            
+            // Add day headers
+            daysOfWeek.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day header';
+                dayElement.textContent = day;
+                calendar.appendChild(dayElement);
+            });
+            
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Empty cells
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                calendar.appendChild(emptyDay);
+            }
+            
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                if (currentMonth === 0 && squadMeetings.includes(day)) {
+                    dayElement.classList.add('meeting');
+                }
+                
+                const today = new Date();
+                if (currentYear === today.getFullYear() && 
+                    currentMonth === today.getMonth() && 
+                    day === today.getDate()) {
+                    dayElement.classList.add('today');
+                }
+                
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        function previousMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar();
+        }
+
+        function openFeedback() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.id = 'feedbackModal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3 class="modal-title">Como foi o encontro?</h3>
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-input" id="participantName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="participantEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Avaliação</label>
+                            <div class="stars" id="starRating">
+                                <span class="star" data-rating="1">★</span>
+                                <span class="star" data-rating="2">★</span>
+                                <span class="star" data-rating="3">★</span>
+                                <span class="star" data-rating="4">★</span>
+                                <span class="star" data-rating="5">★</span>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="form-label">Quais insights o squad de hoje te trouxe?</label>
+                            <textarea class="form-input" id="insights" rows="3"></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-secondary" onclick="closeFeedback()">Cancelar</button>
+                            <button type="submit" class="btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Star rating
+            let rating = 0;
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    rating = index + 1;
+                    updateStars(rating);
+                });
+            });
+            
+            function updateStars(value) {
+                stars.forEach((star, index) => {
+                    star.classList.toggle('active', index < value);
+                });
+            }
+            
+         
+document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('participantName').value;
+    const email = document.getElementById('participantEmail').value;
+    const insights = document.getElementById('insights').value;
+    const rating = document.querySelectorAll('.star.active').length;
+
+    if (!rating) {
+        alert('Por favor, dê uma avaliação.');
+        return;
+    }
+
+    try {
+        const response = await fetch('/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, rating, insights})
+        });
+
+        if (response.ok) {
+            alert(`Feedback enviado!\n\nCertificado será enviado para: ${email}`);
+            closeFeedback();
+        } else {
+            const data = await response.json();
+            alert('Erro ao enviar feedback: ' + (data?.error || 'Erro desconhecido.'));
+        }
+    } catch (error) {
+ console.error('Erro ao processar feedback:', error); // Mostra o erro completo
+  res.status(500).json({ error: error.message || 'Erro ao processar feedback.' });
+    }
+            });
+        }
+        // Close feedback modal
+
+
+        function closeFeedback() {
+            const modal = document.getElementById('feedbackModal');
+            if (modal) modal.remove();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', generateCalendar);
+
+
+
+        const quotes = [
+    {
+        text: "A força de uma equipe está na diversidade de seus talentos e na união de seus propósitos.",
+        author: "Squad desta semana"
+    },
+    {
+        text: "Liderar é unir propósitos e transformar conhecimento em impacto.",
+        author: "Carlos Freitas"
+    },
+    {
+        text: "Inovação nasce do respeito pelas ideias diferentes.",
+        author: "Larissa Pereira"
+    },
+    {
+        text: "Grandes times não se formam por acaso, mas por confiança construída.",
+        author: "João Santos"
+    },
+    {
+        text: "Escutar bem é o primeiro passo para liderar com propósito.",
+        author: "Beatriz Lima"
+    }
+];
+
+let currentQuote = 0;
+
+function updateQuote() {
+    const quoteElement = document.getElementById('quoteText');
+    const authorElement = document.getElementById('quoteAuthor');
+
+    quoteElement.textContent = `"${quotes[currentQuote].text}"`;
+    authorElement.textContent = quotes[currentQuote].author;
+
+    currentQuote = (currentQuote + 1) % quotes.length;
+}
+
+// Inicializa e roda a cada 4 segundos
+updateQuote();
+setInterval(updateQuote, 3000);
+    </script>
+</body>
+</html>
